@@ -1,0 +1,39 @@
+<html xmlns:concordion="http://www.concordion.org/2007/concordion">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+<h1>Correspondencias Parciales</h1>
+
+<p>
+    Las búsquedas por nombre de usuario devuelven correspondencias parciales, e.d.,
+    se devuelven todos los nombres de usuario que contienen la cadena de búsqueda.
+</p>
+
+<div class="example">
+
+    <h3>Ejemplo</h3>
+
+    <p>Dados estos usuarios:</p>
+
+    <table concordion:execute="setUpUser(#username)">
+        <tr><th concordion:set="#username">Nombre de usuario</th></tr>
+        <tr><td>john.lennon</td></tr>
+        <tr><td>ringo.starr</td></tr>
+        <tr><td>george.harrison</td></tr>
+        <tr><td>paul.mccartney</td></tr>
+    </table>
+
+    <p>La búsqueda por "<b concordion:set="#searchString">arr</b>" devolverá:</p>
+
+    <table concordion:verifyRows="#username : getSearchResultsFor(#searchString)">
+        <tr><th concordion:assertEquals="#username">Nombres de usuario con correspondencia</th></tr>
+        <tr><td>george.harrison</td></tr>
+        <tr><td>ringo.starr</td></tr>
+    </table>
+
+</div>
+
+</body>
+</html>
